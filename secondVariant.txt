@@ -1,0 +1,133 @@
+.austranavts {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 25%;
+    color: white;
+    font-family: Montserrat;
+    justify-content: center;
+}
+
+.card {
+    width: 500px;
+    min-height: 500px;
+    display: flex;
+    font-size: 24px;
+    text-align: center;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 50px 50px 50px;
+    gap: 20px;
+    background-color: #176f7f6b;
+    border: 2px double #176f7f;
+}
+
+.card .purpose {
+    max-height: 300px;
+    overflow-y: scroll;
+    border: 1px double #176f7f;
+}
+
+.background1 {
+    margin-top: 350px;
+}
+
+/* .background2 {
+    margin-top: -40px
+} */
+
+.background1, .background2 {
+    width: 500px;
+    height: 400px;
+    position: relative;
+    z-index: 999;
+}
+
+.div0, .div1 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.div0 {
+    background-image: url("./img/Remove-bg.ai_1714156219236.png");
+    top: 95%;
+    left: 110%;
+    z-index: -999;
+}
+
+.div1 {
+    background-image: url("./img/satellite-removebg-preview.png");
+    top: 95%;
+    left: 110%;
+    z-index: -999;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const makeSpaceCard = (data) => {
+    spaceArr = data;
+    let counter = 1;
+    let OneMoreCounter = 0;
+    for (let i = 0; i < 301; i++) {
+        console.log(i);
+        
+        if (data[i].crew != undefined & data[i].date != undefined & data[i].duration != undefined & data[i].purpose != undefined & data[i].country != undefined){
+            if (counter === 1) {
+                OneMoreCounter++
+                counter = 2;
+                const card = `
+                <div class="background${counter}">
+                    <div class="card">
+                        <h3>Crew: ${data[i].crew}</h3>
+                        <span>Date: ${data[i].date}</span>
+                        <span>Duration: ${data[i].duration}</span>
+                        <span class="purpose">Purpose: ${data[i].purpose}</span>
+                        <span>Country: ${data[i].country}</span>
+                        <div class="div${OneMoreCounter % 2}"></div>
+                    </div>
+                </div>
+                `
+                console.log(card);
+                main.insertAdjacentHTML("beforeend", card);
+                
+            } else if (counter === 2) {
+                counter = 1;
+                const card = `
+                <div class="background${counter}">
+                    <div class="card">
+                        <h3>Crew: ${data[i].crew}</h3>
+                        <span>Date: ${data[i].date}</span>
+                        <span>Duration: ${data[i].duration}</span>
+                        <span class="purpose">Purpose: ${data[i].purpose}</span>
+                        <span>Country: ${data[i].country}</span>
+                    </div>
+                </div>
+                `
+                console.log(card);
+                main.insertAdjacentHTML("beforeend", card);
+            }
+            
+        }
+            
+    }
+}
